@@ -31,5 +31,5 @@ elif args.cmd == "compare":
 elif args.cmd == "verify":
     with tempfile.TemporaryDirectory() as dir:
         manifest, tarball = download_package(args.PACKAGE, Path(dir))
-        ret = verify_package(manifest, tarball)
-        exit(0 if ret else 1)
+        errors = verify_package(manifest, tarball)
+        exit(1 if errors else 0)
